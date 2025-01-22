@@ -18,9 +18,6 @@ public class Libreria {
     private ConsumoApiGutendex consumoApi = new ConsumoApiGutendex();
     private ConvertirDatos convertir = new ConvertirDatos();
     private static String API_BASE = "https://gutendex.com/books/?search=";
-    //var json = consumoApi.obtenerDatos("https://gutendex.com/books/?ids=1513");
-    //var json = consumoApi.obtenerDatos("https://gutendex.com/books/?search=Romeo%20and%20Juliet");
-    private List<Libro> datosLibro = new ArrayList<>();
     private iLibroRepository libroRepository;
     private iAutorRepository autorRepository;
     public Libreria(iLibroRepository libroRepository, iAutorRepository autorRepository) {
@@ -116,7 +113,6 @@ public class Libreria {
         System.out.println("Ingrese el nombre del libro: ");
         var nombreLibro = sc.nextLine().toLowerCase();
         var json = consumoApi.obtenerDatos(API_BASE + nombreLibro.replace(" ", "%20"));
-        //System.out.println("JSON INICIAL: " + json);
         LibrosRespuestaApi datos = convertir.convertirDatosJsonAJava(json, LibrosRespuestaApi.class);
 
         if (datos != null && datos.getResultadoLibros() != null && !datos.getResultadoLibros().isEmpty()) {
@@ -137,7 +133,6 @@ public class Libreria {
             return;
         }
 
-        //datosLibro.add(libro);
         try{
             boolean libroExists = libroRepository.existsByTitulo(libro.getTitulo());
             if (libroExists){
@@ -153,7 +148,6 @@ public class Libreria {
 
     @Transactional(readOnly = true)
     private void librosBuscados(){
-        //datosLibro.forEach(System.out::println);
         List<Libro> libros = libroRepository.findAll();
         if (libros.isEmpty()) {
             System.out.println("No se encontraron libros en la base de datos.");
@@ -177,7 +171,6 @@ public class Libreria {
     }
 
     private  void BuscarAutores(){
-        //LISTAR AUTORES DE LIBROS BUSCADOS
         List<Autor> autores = autorRepository.findAll();
 
         if (autores.isEmpty()) {
@@ -186,7 +179,6 @@ public class Libreria {
             System.out.println("Libros encontrados en la base de datos: \n");
             Set<String> autoresUnicos = new HashSet<>();
             for (Autor autor : autores) {
-                // add() retorna true si el nombre no estaba presente y se añade correctamente
                 if (autoresUnicos.add(autor.getNombre())){
                     System.out.println(autor.getNombre()+'\n');
                 }
@@ -216,8 +208,6 @@ public class Libreria {
     }
 
     private void buscarAutoresPorAnio() {
-//        //BUSCAR AUTORES POR ANIO
-
         System.out.println("Indica el año para consultar que autores estan vivos: \n");
         var anioBuscado = sc.nextInt();
         sc.nextLine();
@@ -251,8 +241,6 @@ public class Libreria {
                         index, libro.getTitulo(), libro.getAutores().getNombre(), libro.getCantidadDescargas());
                 index++;
             }
-            //top10Libros.forEach(l-> System.out.printf("Libro: %s Autor: %s Descargas: %s\n",
-            //       l.getTitulo(), l.getAutores().getNombre(), l.getCantidadDescargas()));
         }
     }
 

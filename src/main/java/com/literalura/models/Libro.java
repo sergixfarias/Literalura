@@ -35,11 +35,10 @@ public class Libro {
     public Libro(DatosLibro datosLibro) {
         this.libroId = datosLibro.libroId();
         this.titulo = datosLibro.titulo();
-        // Si autor es una lista de autores (como parece en tu registro DatosLibro)
         if (datosLibro.autor() != null && !datosLibro.autor().isEmpty()) {
-            this.autor = new Autor(datosLibro.autor().get(0)); // Toma el primer autor de la lista
+            this.autor = new Autor(datosLibro.autor().get(0));
         } else {
-            this.autor = null; // o maneja el caso de que no haya autor
+            this.autor = null;
         }
         this.genero =  generoModificado(datosLibro.genero());
         this.idioma = idiomaModificado(datosLibro.idioma());
@@ -134,8 +133,6 @@ public class Libro {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
-
-
 
     public Long getCantidadDescargas() {
         return cantidadDescargas;

@@ -4,5 +4,5 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record Media(
-        @JsonAlias("image/jpeg") String imagen
-){}
+        @JsonAlias("image/jpeg") String imagen){
+}
