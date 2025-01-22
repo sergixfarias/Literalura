@@ -5,7 +5,9 @@ import com.literalura.repository.iLibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class LiteraluraConsole implements CommandLineRunner {
     @Autowired
     private iLibroRepository libroRepository;
@@ -21,6 +23,5 @@ public class LiteraluraConsole implements CommandLineRunner {
 
         Libreria libreria = new Libreria(libroRepository, autorRepository);
         libreria.consumo();
-
     }
 }

@@ -1,5 +1,4 @@
 package com.literalura.models;
-import com.literalura.models.records.DatosLibro;
 import jakarta.persistence.*;
 import java.util.List;
 

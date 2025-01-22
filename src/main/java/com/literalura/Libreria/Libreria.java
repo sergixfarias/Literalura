@@ -7,7 +7,6 @@ import com.literalura.models.LibrosRespuestaApi;
 import com.literalura.models.records.DatosLibro;
 import com.literalura.repository.iAutorRepository;
 import com.literalura.repository.iLibroRepository;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.transaction.annotation.Transactional;
 
